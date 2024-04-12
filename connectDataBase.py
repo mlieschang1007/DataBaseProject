@@ -1,5 +1,7 @@
 import mysql.connector
 
+#資料庫的連線以及查看表格
+
 # 建立資料庫連線
 connection = mysql.connector.connect(
     host='localhost',
@@ -19,8 +21,34 @@ cursor.execute('SHOW TABLES;')
 tables = cursor.fetchall()
 
 # 顯示查詢結果
-for table in tables:
-    print(table[0])
+#print("目前有的table:")
+#for table in tables:
+#print(table[0])
+
+
+#顯示 table 架構
+#cursor.execute('DESCRIBE course_details')
+#columns = cursor.fetchall()
+#print("course_details table 架構:")
+#for column in columns:
+    #print(column)
+
+#cursor.execute('DESCRIBE students')
+#columns = cursor.fetchall()
+#print("students table 架構:")
+#for column in columns:
+#print(column)
+
+cursor.execute('SELECT * FROM course_details')
+
+# 提取查詢結果
+details = cursor.fetchall()
+
+# 顯示 course_details table 的內容
+print("course_details table 內容:")
+for detail in details:
+    print(detail)
+
 
 # 關閉游標和資料庫連線
 cursor.close()
